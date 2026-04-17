@@ -79,7 +79,7 @@
     "menubar_background": "transparent",
     "treeview_background": "rgba(200, 200, 200, 0.6)",
     "main_background": "",
-    "button_background": "transparent",
+    "button_background": "",
     "button_image": "",
     "button_position": ""
   },
@@ -93,7 +93,7 @@
     "menubar_background": "transparent",
     "treeview_background": "rgba(200, 200, 200, 0.6)",
     "main_background": "#EEF",
-    "button_background": "transparent",
+    "button_background": "",
     "button_image": "",
     "button_position": ""
   },
@@ -107,7 +107,7 @@
     "menubar_background": "transparent",
     "treeview_background": "",
     "main_background": "",
-    "button_background": "transparent",
+    "button_background": "",
     "button_image": "",
     "button_position": ""
   }

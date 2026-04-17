@@ -37,7 +37,6 @@ class QGISDresserDialog(QDialog):
         self._presets = self._get_presets()
         self._init_widgets()
         self._connect_signals()
-        self._init_values()
 
     def _init_widgets(self):
         self.cmbPresets.clear()
@@ -121,7 +120,7 @@ class QGISDresserDialog(QDialog):
     def showEvent(self, event):
         super().showEvent(event)
         self.cmbPresets.setCurrentIndex(-1)
-
+        self._init_values()
 
     def _set_combo_data(self, combo, value):
         index = combo.findData(value)
