@@ -35,7 +35,7 @@
     </message>
     <message>
         <location filename="qgd_dialog.ui" line="93"/>
-        <source>Scaling</source>
+        <source>Scale</source>
         <translation type="unfinished">拡大縮小</translation>
     </message>
     <message>
@@ -75,8 +75,8 @@
     </message>
     <message>
         <location filename="qgd_dialog.ui" line="161"/>
-        <source>Anchor (H)</source>
-        <translation type="unfinished">アンカー（横）</translation>
+        <source>Image Position (X)</source>
+        <translation type="unfinished">画像位置 (X)</translation>
     </message>
     <message>
         <location filename="qgd_dialog.ui" line="172"/>
@@ -95,8 +95,8 @@
     </message>
     <message>
         <location filename="qgd_dialog.ui" line="190"/>
-        <source>Anchor (V)</source>
-        <translation type="unfinished">アンカー（縦）</translation>
+        <source>Image Position (Y)</source>
+        <translation type="unfinished">画像位置 (Y)</translation>
     </message>
     <message>
         <location filename="qgd_dialog.ui" line="201"/>

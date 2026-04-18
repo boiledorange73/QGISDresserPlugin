@@ -52,16 +52,16 @@ class BackgroundWidget(QWidget):
         iw, ih = props.pixmap.width(), props.pixmap.height()
         rw, rh = vw/iw, vh/ih # rate ... scale candidate
         # scale
-        if props.image_scale == "fit_larger":
+        if props.main_scale == "fit_larger":
             sw = sh = rw if rw > rh else rh
-        elif props.image_scale == "fit_smaller":
+        elif props.main_scale == "fit_smaller":
             sw = sh = rw if rw < rh else rh
-        elif props.image_scale == "stretch":
+        elif props.main_scale == "stretch":
             sw, sh = rw, rh
-        elif props.image_scale == "shrink_larger":
+        elif props.main_scale == "shrink_larger":
             sc = rw if rw > rh else rh
             sw = sh = 1 if sc > 1 else sc
-        elif props.image_scale == "shrink_smaller":
+        elif props.main_scale == "shrink_smaller":
             sc = rw if rw < rh else rh
             sw = sh = 1 if sc > 1 else sc
         else: # none
@@ -71,23 +71,23 @@ class BackgroundWidget(QWidget):
         if not (dw >= 1 and dh >= 1):
             return
         # 横位置 (シングル画像左上隅)
-        if "center" in props.anchor_h:
+        if "center" in props.main_position_x:
             # (x+dw/2) = vw/2
             x = int((vw-dw)/2)
-        elif "right" in props.anchor_h:
+        elif "right" in props.main_position_x:
             x =  vw - dw
         else: # "left"
             x = 0
         # 縦位置 (シングル画像左上隅)
-        if "middle" in props.anchor_v:
+        if "middle" in props.main_position_y:
             y = int((vh-dh)/2)
-        elif "bottom" in props.anchor_v:
+        elif "bottom" in props.main_position_y:
             y =  vh - dh
         else: # "top"
             y = 0
         # repeat
-        image_repeat = props.image_repeat
-        if image_repeat == "repeat" or image_repeat == "repeat-x" or image_repeat == "repeat-xy":
+        main_repeat = props.main_repeat
+        if main_repeat == "repeat" or main_repeat == "repeat-x" or main_repeat == "repeat-xy":
             x0 = x % dw
             if x0 > 0:
                 x0 -= dw
@@ -95,7 +95,7 @@ class BackgroundWidget(QWidget):
         else:
             x0 = x
             x1 = x0 + 1
-        if image_repeat == "repeat" or image_repeat == "repeat-y" or image_repeat == "repeat-xy":
+        if main_repeat == "repeat" or main_repeat == "repeat-y" or main_repeat == "repeat-xy":
             y0 = y % dw
             if y0 > 0:
                 y0 -= dh

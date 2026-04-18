@@ -7,11 +7,11 @@ class QGISDresserProps:
     _instance = None
 
     DEFAULTS = {
-        "image_path": "",
-        "image_scale": "fit_width",
-        "image_repeat": "no-repeat",
-        "anchor_h": "center",
-        "anchor_v": "middle",
+        "main_image": "",
+        "main_scale": "fit_width",
+        "main_repeat": "no-repeat",
+        "main_position_x": "center",
+        "main_position_y": "middle",
         # styles
         "text_color": "",
         "menubar_background": "",
@@ -38,17 +38,17 @@ class QGISDresserProps:
         self._mk_pixmap()
 
     def _mk_pixmap(self):
-        if os.path.isfile(self._image_path):
-            self._pixmap = QPixmap(self._image_path)
+        if os.path.isfile(self._main_image):
+            self._pixmap = QPixmap(self._main_image)
         else:
             self._pixmap = QPixmap()
 
     def _apply_defaults(self):
-        self._image_path = self.DEFAULTS["image_path"]
-        self._image_scale = self.DEFAULTS["image_scale"]
-        self._image_repeat = self.DEFAULTS["image_repeat"]
-        self._anchor_h = self.DEFAULTS["anchor_h"]
-        self._anchor_v = self.DEFAULTS["anchor_v"]
+        self._main_image = self.DEFAULTS["main_image"]
+        self._main_scale = self.DEFAULTS["main_scale"]
+        self._main_repeat = self.DEFAULTS["main_repeat"]
+        self._main_position_x = self.DEFAULTS["main_position_x"]
+        self._main_position_y = self.DEFAULTS["main_position_y"]
         self._text_color = self.DEFAULTS["text_color"]
         self._menubar_background = self.DEFAULTS["menubar_background"]
         self._treeview_background = self.DEFAULTS["treeview_background"]
@@ -61,11 +61,11 @@ class QGISDresserProps:
         return f"{self.PREFIX}/{name}"
 
     def _load(self):
-        self._image_path = str(self.settings.value(self._key("image_path"), self._image_path))
-        self._image_scale = str(self.settings.value(self._key("image_scale"), self._image_scale))
-        self._image_repeat = str(self.settings.value(self._key("image_repeat"), self._image_repeat))
-        self._anchor_h = str(self.settings.value(self._key("anchor_h"), self._anchor_h))
-        self._anchor_v = str(self.settings.value(self._key("anchor_v"), self._anchor_v))
+        self._main_image = str(self.settings.value(self._key("main_image"), self._main_image))
+        self._main_scale = str(self.settings.value(self._key("main_scale"), self._main_scale))
+        self._main_repeat = str(self.settings.value(self._key("main_repeat"), self._main_repeat))
+        self._main_position_x = str(self.settings.value(self._key("main_position_x"), self._main_position_x))
+        self._main_position_y = str(self.settings.value(self._key("main_position_y"), self._main_position_y))
         self._text_color = str(self.settings.value(self._key("text_color"), self._text_color))
         self._menubar_background = str(self.settings.value(self._key("menubar_background"), self._menubar_background))
         self._treeview_background = str(self.settings.value(self._key("treeview_background"), self._treeview_background))
@@ -82,11 +82,11 @@ class QGISDresserProps:
         self._mk_pixmap()
 
     def reset(self):
-        self.image_path = self.DEFAULTS["image_path"]
-        self.image_scale = self.DEFAULTS["image_scale"]
-        self.image_repeat = self.DEFAULTS["image_repeat"]
-        self.anchor_h = self.DEFAULTS["anchor_h"]
-        self.anchor_v = self.DEFAULTS["anchor_v"]
+        self.main_image = self.DEFAULTS["main_image"]
+        self.main_scale = self.DEFAULTS["main_scale"]
+        self.main_repeat = self.DEFAULTS["main_repeat"]
+        self.main_position_x = self.DEFAULTS["main_position_x"]
+        self.main_position_y = self.DEFAULTS["main_position_y"]
         self.text_color = self.DEFAULTS["text_color"]
         self.menubar_background = self.DEFAULTS["menubar_background"]
         self.treeview_background = self.DEFAULTS["treeview_background"]
@@ -95,47 +95,47 @@ class QGISDresserProps:
         self.button_image = self.DEFAULTS["button_image"]
         self.button_position = self.DEFAULTS["button_position"]
         self._mk_pixmap()
-    # image_path
+    # main_image
     @property
-    def image_path(self):
-        return self._image_path
-    @image_path.setter
-    def image_path(self, value):
-        self._image_path = str(value)
+    def main_image(self):
+        return self._main_image
+    @main_image.setter
+    def main_image(self, value):
+        self._main_image = str(value)
         self._mk_pixmap()
-        self._save("image_path", self._image_path)
-    # image_scale
+        self._save("main_image", self._main_image)
+    # main_scale
     @property
-    def image_scale(self):
-        return self._image_scale
-    @image_scale.setter
-    def image_scale(self, value):
-        self._image_scale = str(value)
-        self._save("image_scale", self._image_scale)
-    # image_repeat
+    def main_scale(self):
+        return self._main_scale
+    @main_scale.setter
+    def main_scale(self, value):
+        self._main_scale = str(value)
+        self._save("main_scale", self._main_scale)
+    # main_repeat
     @property
-    def image_repeat(self):
-        return self._image_repeat
-    @image_repeat.setter
-    def image_repeat(self, value):
-        self._image_repeat = str(value)
-        self._save("image_repeat", self._image_repeat)
-    # anchor_h (horizontal)
+    def main_repeat(self):
+        return self._main_repeat
+    @main_repeat.setter
+    def main_repeat(self, value):
+        self._main_repeat = str(value)
+        self._save("main_repeat", self._main_repeat)
+    # main_position_x (horizontal)
     @property
-    def anchor_h(self):
-        return self._anchor_h
-    @anchor_h.setter
-    def anchor_h(self, value):
-        self._anchor_h = str(value)
-        self._save("anchor_h", self._anchor_h)
-    # anchor_v (vertical)
+    def main_position_x(self):
+        return self._main_position_x
+    @main_position_x.setter
+    def main_position_x(self, value):
+        self._main_position_x = str(value)
+        self._save("main_position_x", self._main_position_x)
+    # main_position_y (vertical)
     @property
-    def anchor_v(self):
-        return self._anchor_v
-    @anchor_v.setter
-    def anchor_v(self, value):
-        self._anchor_v = str(value)
-        self._save("anchor_v", self._anchor_v)
+    def main_position_y(self):
+        return self._main_position_y
+    @main_position_y.setter
+    def main_position_y(self, value):
+        self._main_position_y = str(value)
+        self._save("main_position_y", self._main_position_y)
     # text_color (text color)
     @property
     def text_color(self):
