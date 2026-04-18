@@ -1,6 +1,6 @@
 [general]
 name=QGISDresser
-version=0.1.0
+version=0.2.0
 qgisMinimumVersion=3.28
 description=QGISDresser is a plugin to dress up QGIS GUI.
 author=Shinsuke Nakamori
