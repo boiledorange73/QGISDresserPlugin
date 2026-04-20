@@ -22,7 +22,7 @@ from qgis.gui import QgisInterface
 from qgis.PyQt.QtGui import QIcon
 from qgis.PyQt.QtWidgets import QAction
 
-from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication
+from qgis.PyQt.QtCore import QSettings, QTranslator, QCoreApplication, QTimer
 
 from .qgd_bgwidget import BackgroundWidget, MainWindowResizeFilter
 from .qgd_props import QGISDresserProps
@@ -59,7 +59,7 @@ class QGISDresser:
         self.bg_widget.lower()
         self.resize_filter = MainWindowResizeFilter(self.bg_widget)
         self.dlg = None
-        self.apply_style()
+        QTimer.singleShot(0, self.apply_style)
         mw.installEventFilter(self.resize_filter)
 
     def unload(self):

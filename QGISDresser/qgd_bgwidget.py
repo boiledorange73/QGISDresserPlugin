@@ -36,7 +36,7 @@ from .qgd_props import QGISDresserProps
 class BackgroundWidget(QWidget):
     def __init__(self, parent=None):
         super().__init__(parent)
-        self.setAttribute(Qt.WA_TransparentForMouseEvents, True)
+        self.setAttribute(Qt.WidgetAttribute.WA_TransparentForMouseEvents)
         self.setAutoFillBackground(False)
 
     def paintEvent(self, event):
@@ -118,7 +118,7 @@ class MainWindowResizeFilter(QObject):
         self.bg_widget = bg_widget
 
     def eventFilter(self, obj, event):
-        if event.type() == QEvent.Resize:
+        if event.type() == QEvent.Type.Resize:
             self.bg_widget.setGeometry(obj.rect())
             self.bg_widget.lower()
             self.bg_widget.update()
