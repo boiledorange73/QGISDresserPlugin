@@ -42,8 +42,12 @@ class QGISDresserDialog(QDialog):
         self.cmbPresets.clear()
         self.cmbPresets.addItem("","")
         if self._presets is not None:
-            for key in self._presets.keys():
-                self.cmbPresets.addItem(key, key)
+            for key, value in self._presets.items():
+                if "title" in value:
+                    title = value["title"]
+                else:
+                    title = key
+                self.cmbPresets.addItem(self.tr(title), key)
         self.cmbMainScale.clear()
         self.cmbMainScale.addItem(self.tr("None"), "none")
         self.cmbMainScale.addItem(self.tr("Fit (Smaller)"), "fit_smaller")

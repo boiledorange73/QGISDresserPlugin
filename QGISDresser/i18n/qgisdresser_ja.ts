@@ -4,10 +4,23 @@
 <context>
     <name>QGISDresserDialog</name>
     <message>
-        <location filename="qgd_dialog.ui" line="14"/>
         <source>QGIS Dresser</source>
         <translation type="unfinished">QGIS Dresser</translation>
     </message>
+    <!-- presets -->
+    <message>
+        <source>EPSG:4301 (Tokyo 1918 Geodetic)</source>
+        <translation type="unfinished">EPSG:4301 (日本測地系 地理座標系)</translation>
+    </message>
+    <message>
+        <source>EPSG:3857 (Web Mercator)</source>
+        <translation type="unfinished">EPSG:3857 (Webメルカトル)</translation>
+    </message>
+    <message>
+        <source>BOSS IS HERE</source>
+        <translation type="unfinished">ボスが来た</translation>
+    </message>
+    <!-- UI -->
     <message>
         <location filename="qgd_dialog.ui" line="48"/>
         <source>Style Settings</source>

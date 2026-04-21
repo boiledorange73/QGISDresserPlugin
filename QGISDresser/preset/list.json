@@ -70,6 +70,7 @@
     "button_position": "top"
   },
   "EPSG:4301": {
+    "title": "EPSG:4301 (Tokyo 1918 Geodetic)",
     "main_image": "epsg4301-512x512.png",
     "main_scale": "none",
     "main_repeat": "no-repeat",
@@ -84,6 +85,7 @@
     "button_position": ""
   },
   "EPSG:3857": {
+    "title": "EPSG:3857 (Web Mercator)",
     "main_image": "epsg3857-512x512.png",
     "main_scale": "none",
     "main_repeat": "no-repeat",
