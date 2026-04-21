@@ -35,6 +35,8 @@ class QGISDresserDialog(QDialog):
         if self.dialog is None:
             raise RuntimeError("Failed loading UI file.")
         self._presets = self._get_presets()
+        self.rbDetailsNo.setChecked(True)
+        self._on_details()
         self._init_widgets()
         self._connect_signals()
 
@@ -69,10 +71,37 @@ class QGISDresserDialog(QDialog):
         self.cmbMainPositionY.addItem(self.tr("Middle"), "middle")
         self.cmbMainPositionY.addItem(self.tr("Bottom"), "bottom")
 
+    def _on_details(self):
+        f = self.rbDetailsYes.isChecked()
+        self.lblMainScale.setEnabled(f)
+        self.cmbMainScale.setEnabled(f)
+        self.lblMainRepeat.setEnabled(f)
+        self.cmbMainRepeat.setEnabled(f)
+        self.lblMainPositionX.setEnabled(f)
+        self.cmbMainPositionX.setEnabled(f)
+        self.lblMainPositionY.setEnabled(f)
+        self.cmbMainPositionY.setEnabled(f)
+        self.lblTextColor.setEnabled(f)
+        self.txtTextColor.setEnabled(f)
+        self.btnTextColor.setEnabled(f)
+        self.lblMenubarBackground.setEnabled(f)
+        self.txtMenubarBackground.setEnabled(f)
+        self.btnMenubarBackground.setEnabled(f)
+        self.lblTreeviewBackground.setEnabled(f)
+        self.txtTreeviewBackground.setEnabled(f)
+        self.btnTreeviewBackground.setEnabled(f)
+        self.lblMainBackground.setEnabled(f)
+        self.txtMainBackground.setEnabled(f)
+        self.btnMainBackground.setEnabled(f)
+        self.lblButtonBackground.setEnabled(f)
+        self.txtButtonBackground.setEnabled(f)
+        self.btnButtonBackground.setEnabled(f)
+
     def _connect_signals(self):
         self.cmbPresets.currentIndexChanged.connect(self.on_preset)
         self.btnPresets.clicked.connect(self.on_preset)
         self.btnMainImage.clicked.connect(self.on_browse_image)
+        self.rbDetailsYes.toggled.connect(self._on_details)
         self.btnTextColor.clicked.connect(
             lambda: self.select_color_for(self.txtTextColor)
         )

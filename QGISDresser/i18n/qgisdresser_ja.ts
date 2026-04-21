@@ -22,6 +22,14 @@
     </message>
     <!-- UI -->
     <message>
+        <source>Yes</source>
+        <translation type="unfinished">はい</translation>
+    </message>
+    <message>
+        <source>No</source>
+        <translation type="unfinished">いいえ</translation>
+    </message>
+    <message>
         <location filename="qgd_dialog.ui" line="48"/>
         <source>Style Settings</source>
         <translation type="unfinished">スタイル設定</translation>
@@ -45,6 +53,10 @@
         <location filename="qgd_dialog.ui" line="86"/>
         <source>Browse...</source>
         <translation type="unfinished">選択...</translation>
+    </message>
+    <message>
+        <source>Details</source>
+        <translation type="unfinished">詳細</translation>
     </message>
     <message>
         <location filename="qgd_dialog.ui" line="93"/>

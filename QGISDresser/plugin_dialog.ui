@@ -7,13 +7,13 @@
     <x>0</x>
     <y>0</y>
     <width>520</width>
-    <height>420</height>
+    <height>452</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Style Settings</string>
   </property>
-  <layout class="QGridLayout" name="gridLayoutRoot" rowstretch="0,0,0,0">
+  <layout class="QGridLayout" name="gridLayoutRoot" rowstretch="0">
    <property name="leftMargin">
     <number>12</number>
    </property>
@@ -34,8 +34,9 @@
      <property name="spacing">
       <number>8</number>
      </property>
+
      <item row="0" column="0">
-      <widget class="QLabel" name="label">
+      <widget class="QLabel" name="lblPresets">
        <property name="text">
         <string>Presets</string>
        </property>
@@ -54,8 +55,9 @@
        </property>
       </widget>
      </item>
+
      <item row="1" column="0">
-      <widget class="QLabel" name="label_2">
+      <widget class="QLabel" name="lblMainImage">
        <property name="text">
         <string>Image</string>
        </property>
@@ -74,8 +76,35 @@
        </property>
       </widget>
      </item>
+
      <item row="2" column="0">
-      <widget class="QLabel" name="label_3">
+      <widget class="QLabel" name="lblDetails">
+       <property name="text">
+        <string>Details</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1" colspan="2">
+      <layout class="QHBoxLayout" name="horizontalLayout_3">
+       <item>
+        <widget class="QRadioButton" name="rbDetailsYes">
+         <property name="text">
+          <string>Yes</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QRadioButton" name="rbDetailsNo">
+         <property name="text">
+          <string>No</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+
+     <item row="3" column="0">
+      <widget class="QLabel" name="lblMainScale">
        <property name="text">
         <string>Scale</string>
        </property>
@@ -84,12 +113,12 @@
        </property>
       </widget>
      </item>
-     <item row="2" column="1" colspan="2">
-      <widget class="QComboBox" name="cmbMainScale">
-      </widget>
+     <item row="3" column="1" colspan="2">
+      <widget class="QComboBox" name="cmbMainScale"/>
      </item>
-     <item row="3" column="0">
-      <widget class="QLabel" name="label_4">
+
+     <item row="4" column="0">
+      <widget class="QLabel" name="lblMainRepeat">
        <property name="text">
         <string>Repeat</string>
        </property>
@@ -98,12 +127,12 @@
        </property>
       </widget>
      </item>
-     <item row="3" column="1" colspan="2">
-      <widget class="QComboBox" name="cmbMainRepeat">
-      </widget>
+     <item row="4" column="1" colspan="2">
+      <widget class="QComboBox" name="cmbMainRepeat"/>
      </item>
-     <item row="4" column="0">
-      <widget class="QLabel" name="label_5">
+
+     <item row="5" column="0">
+      <widget class="QLabel" name="lblMainPositionX">
        <property name="text">
         <string>Image Position (X)</string>
        </property>
@@ -112,12 +141,12 @@
        </property>
       </widget>
      </item>
-     <item row="4" column="1" colspan="2">
-      <widget class="QComboBox" name="cmbMainPositionX">
-      </widget>
+     <item row="5" column="1" colspan="2">
+      <widget class="QComboBox" name="cmbMainPositionX"/>
      </item>
-     <item row="5" column="0">
-      <widget class="QLabel" name="label_6">
+
+     <item row="6" column="0">
+      <widget class="QLabel" name="lblMainPositionY">
        <property name="text">
         <string>Image Position (Y)</string>
        </property>
@@ -126,12 +155,12 @@
        </property>
       </widget>
      </item>
-     <item row="5" column="1" colspan="2">
-      <widget class="QComboBox" name="cmbMainPositionY">
-      </widget>
+     <item row="6" column="1" colspan="2">
+      <widget class="QComboBox" name="cmbMainPositionY"/>
      </item>
-     <item row="6" column="0">
-      <widget class="QLabel" name="label_10">
+
+     <item row="7" column="0">
+      <widget class="QLabel" name="lblTextColor">
        <property name="text">
         <string>Text Color</string>
        </property>
@@ -140,18 +169,19 @@
        </property>
       </widget>
      </item>
-     <item row="6" column="1">
+     <item row="7" column="1">
       <widget class="QLineEdit" name="txtTextColor"/>
      </item>
-     <item row="6" column="2">
+     <item row="7" column="2">
       <widget class="QPushButton" name="btnTextColor">
        <property name="text">
         <string>Select...</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="label_10">
+
+     <item row="8" column="0">
+      <widget class="QLabel" name="lblMenubarBackground">
        <property name="text">
         <string>Menubar Background</string>
        </property>
@@ -160,28 +190,19 @@
        </property>
       </widget>
      </item>
-     <item row="7" column="1">
+     <item row="8" column="1">
       <widget class="QLineEdit" name="txtMenubarBackground"/>
      </item>
-     <item row="7" column="2">
+     <item row="8" column="2">
       <widget class="QPushButton" name="btnMenubarBackground">
        <property name="text">
         <string>Select...</string>
        </property>
       </widget>
      </item>
-     <item row="7" column="0">
-      <widget class="QLabel" name="label_10">
-       <property name="text">
-        <string>Menubar Background</string>
-       </property>
-       <property name="buddy">
-        <cstring>txtMenubarBackground</cstring>
-       </property>
-      </widget>
-     </item>
-     <item row="8" column="0">
-      <widget class="QLabel" name="label_7">
+
+     <item row="9" column="0">
+      <widget class="QLabel" name="lblTreeviewBackground">
        <property name="text">
         <string>Tree View Background</string>
        </property>
@@ -190,18 +211,19 @@
        </property>
       </widget>
      </item>
-     <item row="8" column="1">
+     <item row="9" column="1">
       <widget class="QLineEdit" name="txtTreeviewBackground"/>
      </item>
-     <item row="8" column="2">
+     <item row="9" column="2">
       <widget class="QPushButton" name="btnTreeviewBackground">
        <property name="text">
         <string>Select...</string>
        </property>
       </widget>
      </item>
-     <item row="9" column="0">
-      <widget class="QLabel" name="label_8">
+
+     <item row="10" column="0">
+      <widget class="QLabel" name="lblMainBackground">
        <property name="text">
         <string>Main Background</string>
        </property>
@@ -210,18 +232,19 @@
        </property>
       </widget>
      </item>
-     <item row="9" column="1">
+     <item row="10" column="1">
       <widget class="QLineEdit" name="txtMainBackground"/>
      </item>
-     <item row="9" column="2">
+     <item row="10" column="2">
       <widget class="QPushButton" name="btnMainBackground">
        <property name="text">
         <string>Select...</string>
        </property>
       </widget>
      </item>
-     <item row="10" column="0">
-      <widget class="QLabel" name="label_9">
+
+     <item row="11" column="0">
+      <widget class="QLabel" name="lblButtonBackground">
        <property name="text">
         <string>Button Background</string>
        </property>
@@ -230,22 +253,23 @@
        </property>
       </widget>
      </item>
-     <item row="10" column="1">
+     <item row="11" column="1">
       <widget class="QLineEdit" name="txtButtonBackground"/>
      </item>
-     <item row="10" column="2">
+     <item row="11" column="2">
       <widget class="QPushButton" name="btnButtonBackground">
        <property name="text">
         <string>Select...</string>
        </property>
       </widget>
      </item>
-     <item row="11" column="0" colspan="3">
+
+     <item row="12" column="0" colspan="3">
       <layout class="QHBoxLayout" name="horizontalLayout">
        <item>
         <spacer name="horizontalSpacer">
          <property name="orientation">
-          <enum>Qt::Horizontal</enum>
+          <enum>Qt::Orientation::Horizontal</enum>
          </property>
          <property name="sizeHint" stdset="0">
           <size>

@@ -9,7 +9,7 @@
     "menubar_background": "transparent",
     "treeview_background": "rgba(200, 200, 200, 0.6)",
     "main_background": "",
-    "button_background": "transparent",
+    "button_background": "",
     "button_image": "orange_circle.png",
     "button_position": "top"
   },
