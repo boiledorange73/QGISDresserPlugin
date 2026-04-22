@@ -41,14 +41,11 @@ class BackgroundWidget(QWidget):
 
     def paintEvent(self, event):
         props = QGISDresserProps()
-        # painter
-        p = QPainter(self)
-        # 1) 背景色
-        # p.fillRect(self.rect(), self.bg_color)
-        # 2) 画像
+        # is null ?
         if props.pixmap.isNull():
             return
-        vw, vh = self.width(), self.height()
+        # view calculation
+        vw, vh = self.width(), self.height() # w/h in pixels
         iw, ih = props.pixmap.width(), props.pixmap.height()
         rw, rh = vw/iw, vh/ih # rate ... scale candidate
         # scale
@@ -75,14 +72,14 @@ class BackgroundWidget(QWidget):
             # (x+dw/2) = vw/2
             x = int((vw-dw)/2)
         elif "right" in props.main_position_x:
-            x =  vw - dw
+            x =  vw-dw
         else: # "left"
             x = 0
         # 縦位置 (シングル画像左上隅)
         if "middle" in props.main_position_y:
             y = int((vh-dh)/2)
         elif "bottom" in props.main_position_y:
-            y =  vh - dh
+            y =  vh-dh
         else: # "top"
             y = 0
         # repeat
@@ -96,7 +93,7 @@ class BackgroundWidget(QWidget):
             x0 = x
             x1 = x0 + 1
         if main_repeat == "repeat" or main_repeat == "repeat-y" or main_repeat == "repeat-xy":
-            y0 = y % dw
+            y0 = y % dh
             if y0 > 0:
                 y0 -= dh
             y1 = vh
@@ -104,13 +101,17 @@ class BackgroundWidget(QWidget):
             y0 = y
             y1 = y0 + 1
         # draws
-        tx = 0
-        for x in range(x0, x1, dw):
-            tx = tx + 1
-            ty = 0
-            for y in range(y0, y1, dh):
-                ty = ty + 1
-                p.drawPixmap(QRect(x, y, dw, dh), props.pixmap)
+        p = QPainter(self)
+        try:
+            tx = 0
+            for x in range(x0, x1, dw):
+                tx = tx + 1
+                ty = 0
+                for y in range(y0, y1, dh):
+                    ty = ty + 1
+                    p.drawPixmap(QRect(x, y, dw, dh), props.pixmap)
+        finally:
+            p.end()
 
 class MainWindowResizeFilter(QObject):
     def __init__(self, bg_widget):

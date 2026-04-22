@@ -55,8 +55,8 @@
         <translation type="unfinished">選択...</translation>
     </message>
     <message>
-        <source>Details</source>
-        <translation type="unfinished">詳細</translation>
+        <source>Advanced Settings</source>
+        <translation type="unfinished">詳細設定</translation>
     </message>
     <message>
         <location filename="qgd_dialog.ui" line="93"/>

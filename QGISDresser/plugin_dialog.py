@@ -20,7 +20,7 @@ import os
 
 from qgis.PyQt import uic
 from qgis.PyQt.QtWidgets import QDialog, QFileDialog, QColorDialog
-from qgis.PyQt.QtCore import QCoreApplication, pyqtSignal, QDir
+from qgis.PyQt.QtCore import QCoreApplication, pyqtSignal, QDir, QTimer, Qt
 
 from .qgd_props import QGISDresserProps
 
@@ -35,8 +35,9 @@ class QGISDresserDialog(QDialog):
         if self.dialog is None:
             raise RuntimeError("Failed loading UI file.")
         self._presets = self._get_presets()
-        self.rbDetailsNo.setChecked(True)
-        self._on_details()
+        self.btnAdvancedToggle.setChecked(False)
+        # initializes status
+        self._on_advanced()
         self._init_widgets()
         self._connect_signals()
 
@@ -71,37 +72,36 @@ class QGISDresserDialog(QDialog):
         self.cmbMainPositionY.addItem(self.tr("Middle"), "middle")
         self.cmbMainPositionY.addItem(self.tr("Bottom"), "bottom")
 
-    def _on_details(self):
-        f = self.rbDetailsYes.isChecked()
-        self.lblMainScale.setEnabled(f)
-        self.cmbMainScale.setEnabled(f)
-        self.lblMainRepeat.setEnabled(f)
-        self.cmbMainRepeat.setEnabled(f)
-        self.lblMainPositionX.setEnabled(f)
-        self.cmbMainPositionX.setEnabled(f)
-        self.lblMainPositionY.setEnabled(f)
-        self.cmbMainPositionY.setEnabled(f)
-        self.lblTextColor.setEnabled(f)
-        self.txtTextColor.setEnabled(f)
-        self.btnTextColor.setEnabled(f)
-        self.lblMenubarBackground.setEnabled(f)
-        self.txtMenubarBackground.setEnabled(f)
-        self.btnMenubarBackground.setEnabled(f)
-        self.lblTreeviewBackground.setEnabled(f)
-        self.txtTreeviewBackground.setEnabled(f)
-        self.btnTreeviewBackground.setEnabled(f)
-        self.lblMainBackground.setEnabled(f)
-        self.txtMainBackground.setEnabled(f)
-        self.btnMainBackground.setEnabled(f)
-        self.lblButtonBackground.setEnabled(f)
-        self.txtButtonBackground.setEnabled(f)
-        self.btnButtonBackground.setEnabled(f)
+    def _on_advanced(self):
+        checked = self.btnAdvancedToggle.isChecked()
+        # changes button
+        if checked:
+            self.btnAdvancedToggle.setArrowType(Qt.ArrowType.DownArrow)
+        else:
+            self.btnAdvancedToggle.setArrowType(Qt.ArrowType.RightArrow)
+        self.btnAdvancedToggle.setText(self.tr("Advanced Settings"))
+        # shows/hide advanced settings
+        self.groupAdvanced.setVisible(checked)
+        self.btnAdvancedToggle.updateGeometry()
+        self.updateGeometry()
+        layout = self.layout()
+        if layout is not None:
+            layout.invalidate()
+            layout.activate()
+        QTimer.singleShot(0, self._adjust_dialog_size)
+
+    def _adjust_dialog_size(self):
+        w = self.width()
+        h = self.sizeHint().height()
+        self.setMinimumSize(0, 0)
+        self.adjustSize()
+        self.resize(w, h)
 
     def _connect_signals(self):
         self.cmbPresets.currentIndexChanged.connect(self.on_preset)
         self.btnPresets.clicked.connect(self.on_preset)
         self.btnMainImage.clicked.connect(self.on_browse_image)
-        self.rbDetailsYes.toggled.connect(self._on_details)
+        self.btnAdvancedToggle.toggled.connect(self._on_advanced)
         self.btnTextColor.clicked.connect(
             lambda: self.select_color_for(self.txtTextColor)
         )
@@ -137,6 +137,8 @@ class QGISDresserDialog(QDialog):
         self.txtMenubarBackground.setText(prop.menubar_background)
         self.txtTreeviewBackground.setText(prop.treeview_background)
         self.txtButtonBackground.setText(prop.button_background)
+        # advanced button
+        self.btnAdvancedToggle.setChecked(False)
 
     def _update_values(self, data):
         self.txtMainImage.setText(data["main_image"])

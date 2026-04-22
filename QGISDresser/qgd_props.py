@@ -8,14 +8,14 @@ class QGISDresserProps:
 
     DEFAULTS = {
         "main_image": "",
-        "main_scale": "fit_width",
+        "main_scale": "none",
         "main_repeat": "no-repeat",
-        "main_position_x": "center",
-        "main_position_y": "middle",
+        "main_position_x": "left",
+        "main_position_y": "bottom",
         # styles
         "text_color": "",
         "menubar_background": "",
-        "treeview_background": "rgba(200, 200, 200, 0.6)",
+        "treeview_background": "rgba(255, 255, 255, 0.6)",
         "main_background": "",
         "button_background": "rgba(255, 255, 255, 0)",
         "button_image": "transparent",
