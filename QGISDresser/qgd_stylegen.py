@@ -1,3 +1,4 @@
+from qgis.PyQt.QtCore import QUrl
 
 from .qgd_props import QGISDresserProps
 import os
@@ -144,20 +145,3 @@ class QGISDresserStyleSheetGenerator:
             return QUrl.fromLocalFile(file_path).toString()
         else:
             return value
-
-    #
-    # TODO: 消す
-    #
-    def _get_image_property(self, mode: str, property: str) -> str:
-        file_path = os.path.join(
-            os.path.dirname(__file__), "preset", "images", property
-        )
-
-        if os.path.exists(file_path):
-            resized_image = self._resize_image(mode=mode, file_path=file_path)
-            return_image = f"url({resized_image})"
-        else:
-            return_image = property
-
-        return return_image
-

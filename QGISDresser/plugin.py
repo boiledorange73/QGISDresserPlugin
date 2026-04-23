@@ -63,7 +63,10 @@ class QGISDresser:
         mw.installEventFilter(self.resize_filter)
 
     def unload(self):
+        # removes a menu
         self.iface.removePluginMenu(PLUGIN_NAME, self.action)
+        # purges styles
+        self.iface.mainWindow().setStyleSheet("")
         # BackgroundWidget
         mw = self.iface.mainWindow()
         if getattr(self,"resize_filter", None) is not  None:

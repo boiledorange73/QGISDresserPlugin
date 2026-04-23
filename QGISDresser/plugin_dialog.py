@@ -199,9 +199,13 @@ class QGISDresserDialog(QDialog):
             self.txtMainImage.setText(path)
 
     def select_color_for(self, line_edit):
-        color = QColorDialog.getColor(parent=self.dialog)
+        from qgis.PyQt.QtGui import QColor
+        color = QColorDialog.getColor(
+            parent=self.dialog,
+            options=QColorDialog.ColorDialogOption.ShowAlphaChannel
+        )
         if color.isValid():
-            line_edit.setText(color.name())  # 例: #ff0000
+            line_edit.setText(color.name(QColor.NameFormat.HexArgb))  # 例: #ff0000
 
     def on_style_changed(self, _value):
         # コンボ変更時の処理
