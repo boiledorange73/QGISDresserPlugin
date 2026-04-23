@@ -44,9 +44,11 @@ class BackgroundWidget(QWidget):
         # is null ?
         if props.pixmap.isNull():
             return
-        # view calculation
-        vw, vh = self.width(), self.height() # w/h in pixels
-        iw, ih = props.pixmap.width(), props.pixmap.height()
+        # view calculation (logical pixel)
+        # pixmap.width() and pixmap.height() are transformed into logical pixels.
+        pm_ratio = props.pixmap.devicePixelRatio()
+        vw, vh = self.width(), self.height()
+        iw, ih = props.pixmap.width()/pm_ratio, props.pixmap.height()/pm_ratio
         rw, rh = vw/iw, vh/ih # rate ... scale candidate
         # scale
         if props.main_scale == "fit_larger":
@@ -62,12 +64,17 @@ class BackgroundWidget(QWidget):
             sc = rw if rw < rh else rh
             sw = sh = 1 if sc > 1 else sc
         else: # none
-            sw, sh = 1., 1.
+            # considers rate of device ratio (logical pixels / physical pixels) and pixmap ratio
+            dv_ratio = self.devicePixelRatioF()
+            if dv_ratio > 0.:
+                sw, sh = pm_ratio/dv_ratio, pm_ratio/dv_ratio
+            else:
+                sw, sh = 1., 1.
         # drawing area (single)
         dw, dh = int(sw*iw), int(sh*ih)
         if not (dw >= 1 and dh >= 1):
             return
-        # 横位置 (シングル画像左上隅)
+        # Left of single image.
         if "center" in props.main_position_x:
             # (x+dw/2) = vw/2
             x = int((vw-dw)/2)
@@ -75,7 +82,7 @@ class BackgroundWidget(QWidget):
             x =  vw-dw
         else: # "left"
             x = 0
-        # 縦位置 (シングル画像左上隅)
+        # Top of single image.
         if "middle" in props.main_position_y:
             y = int((vh-dh)/2)
         elif "bottom" in props.main_position_y:
@@ -83,35 +90,35 @@ class BackgroundWidget(QWidget):
         else: # "top"
             y = 0
         # repeat
+        rect = event.rect() if event is not None else None
+        if rect is not None:
+            minx = rect.left()
+            miny = rect.top()
+            maxx = rect.right()
+            maxy = rect.bottom()
+        else:
+            # maxx = width-1, maxy = height-1
+            minx,miny,maxx,maxy = 0,0,vw-1,vh-1
         main_repeat = props.main_repeat
-        if main_repeat == "repeat" or main_repeat == "repeat-x" or main_repeat == "repeat-xy":
-            x0 = x % dw
-            if x0 > 0:
-                x0 -= dw
-            x1 = vw
+        if main_repeat in ("repeat", "repeat-x", "repeat-xy"):
+            x0 = ((minx-x) // dw) * dw + x
+            xs = range(x0, maxx+1, dw)
         else:
-            x0 = x
-            x1 = x0 + 1
-        if main_repeat == "repeat" or main_repeat == "repeat-y" or main_repeat == "repeat-xy":
-            y0 = y % dh
-            if y0 > 0:
-                y0 -= dh
-            y1 = vh
+            xs = () if x + dw <= minx or x > maxx else (x,)
+        if main_repeat in ("repeat", "repeat-y", "repeat-xy"):
+            y0 = ((miny-y) // dh) * dh + y
+            ys = range(y0, maxy+1, dh)
         else:
-            y0 = y
-            y1 = y0 + 1
+            ys = () if y + dh <= miny or y > maxy else (y,)
         # draws
         p = QPainter(self)
         try:
-            tx = 0
-            for x in range(x0, x1, dw):
-                tx = tx + 1
-                ty = 0
-                for y in range(y0, y1, dh):
-                    ty = ty + 1
+            for x in xs:
+                for y in ys:
                     p.drawPixmap(QRect(x, y, dw, dh), props.pixmap)
         finally:
             p.end()
+        # print(len(xs), len(ys))
 
 class MainWindowResizeFilter(QObject):
     def __init__(self, bg_widget):

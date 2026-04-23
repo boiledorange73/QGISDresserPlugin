@@ -101,6 +101,8 @@ class QGISDresser:
         gen = QGISDresserStyleSheetGenerator()
         stylesheet:str = gen.generate_stylesheet()
         self.iface.mainWindow().setStyleSheet(stylesheet)
+        if self.bg_widget is not None:
+            self.bg_widget.update()
 
     def _init_locale(self):
         locale = str(QSettings().value("locale/userLocale", "en"))[0:2]
